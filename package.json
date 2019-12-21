@@ -1,0 +1,24 @@
+{
+  "name": "javascript-algorithm",
+  "version": "1.0.0",
+  "description": "algorithm for javascript",
+  "repository": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "javascript",
+    "algorithm",
+    "binary search",
+    "selection sort"
+  ],
+  "author": "zhijiang3<240897357@qq.com> (https://github.com/zhijiang3)",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  }
+}
