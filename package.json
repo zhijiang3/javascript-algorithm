@@ -2,7 +2,10 @@
   "name": "javascript-algorithm",
   "version": "1.0.0",
   "description": "algorithm for javascript",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhijiang3/javascript-algorithm.git"
+  },
   "scripts": {
     "test": "jest"
   },
