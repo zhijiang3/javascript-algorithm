@@ -1,4 +1,4 @@
-import binarySearch from '../lib/binary-search';
+import binarySearch from "../lib/binary-search";
 
 test("查找不存在的元素", () => {
   expect(binarySearch([1, 2, 3, 4], 5)).toBe(-1);
