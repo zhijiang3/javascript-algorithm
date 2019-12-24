@@ -26,8 +26,8 @@ export class Node {
   }
 }
 
-export const UNDIRECTED_GRAPH = Symbol('undirected graph');
-export const DIRECTED_GRAPH = Symbol('directed graph');
+export const UNDIRECTED_GRAPH = Symbol("undirected graph");
+export const DIRECTED_GRAPH = Symbol("directed graph");
 
 export default class Graph {
   constructor(edgeDirection = UNDIRECTED_GRAPH) {
@@ -89,10 +89,10 @@ export default class Graph {
     for (let key of this.nodes.keys()) {
       const node = this.nodes.get(key);
 
-      result.push(`${node.value}: [${node.adjacentList.map(node => node.value).join(', ')}]`);
+      result.push(`${node.value}: [${node.adjacentList.map(node => node.value).join(", ")}]`);
     }
 
-    return result.join(', ');
+    return result.join(", ");
   }
 }
 
