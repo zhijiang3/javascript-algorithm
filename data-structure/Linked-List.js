@@ -109,24 +109,3 @@ export default class LinkedList {
     return `[${result.join(",")}]`;
   }
 }
-
-/**
- * usage:
- * const ll = new LinkedList();
- * 
- * ll.append(new Node(1));
- * ll.toString(); // 1
- * 
- * ll.prepend(new Node(2));
- * ll.toString(); // 2,1
- * 
- * ll.append(new Node(0));
- * ll.toString(); // 2,1,0
- * 
- * ll.find(node => node.data === 1); // Node { data: 1, next: ... }
- * 
- * ll.delete(node => node.data === 1);
- * ll.toString(); // 2,0
- * 
- * ll.travel(node => {})
- */

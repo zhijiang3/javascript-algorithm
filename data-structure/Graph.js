@@ -95,20 +95,3 @@ export default class Graph {
     return result.join(", ");
   }
 }
-
-/**
- * usage:
- * const g = new Graph();
- * 
- * g.addVertex(1);
- * g.addVertex(2);
- * g.addVertex(3);
- * g.addVertex(4);
- * 
- * g.addEdge(1, 2);
- * g.addEdge(2, 3);
- * g.addEdge(3, 4);
- * g.addEdge(4, 1);
- * 
- * g.toString() // "1: [2, 4], 2: [1, 3], 3: [2, 4], 4: [3, 1]"
- */
