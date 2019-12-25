@@ -2,15 +2,15 @@
 
 # JavaScript 算法
 
-- [x] - [二分查找](lib/binary-search.js)
-- [x] - [选择排序](lib/selection-sort.js)
-- [ ] - 快速排序
+- [x] - [二分查找](algorithm/binary-search.js)
+- [x] - [选择排序](algorithm/selection-sort.js)
+- [x] - [快速排序](algorithm/quick-sort.js)
 - [ ] - 广度优先搜索
 
 ### 涉及的数据结构
 
 - [ ] - 数组
-- [ ] - 链表
+- [x] - [链表](data-structure/Linked-List.js)
 - [ ] - 队列
 - [ ] - 栈
 - [ ] - 散列表
