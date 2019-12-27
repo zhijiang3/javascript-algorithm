@@ -12,53 +12,121 @@ function isFunc(fn) {
 
 export default class LinkedList {
   static normalizeNode(node) {
-    if (!node instanceof Node) {
+    if (!(node instanceof Node)) {
       return new Node(node);
     }
 
     return node;
   }
 
-  constructor(node) {
-    node = LinkedList.normalizeNode(node);
-
-    this.head = node;
-    this.tail = node;
+  constructor() {
+    this.head = null;
+    this.tail = null;
   }
 
   append(node) {
+    if (node == null) return this;
+
     node = LinkedList.normalizeNode(node);
 
-    if (!this.tail) {
+    // update head pointer
+    if (this.head == null) {
       this.head = node;
-      this.tail = node;
-      return;
     }
 
+    // update tail node pointer
     node.prev = this.tail;
-    this.tail.next = node;
-    this.tail = node;
+    if (this.tail != null) {
+      this.tail.next = node;
+    } else {
+      this.tail = node;
+    }
+
+    // update tail pointer
+    // It maybe append a linked list,
+    // so we need to find the last node.
+    let tail = this.tail;
+    while (tail.next) {
+      tail = tail.next;
+    }
+    this.tail = tail;
+
+    return this;
   }
 
   prepend(node) {
+    if (node == null) return this;
+
     node = LinkedList.normalizeNode(node);
 
-    if (!this.head) {
-      this.head = node;
+    // update tail pointer
+    if (this.tail == null) {
       this.tail = node;
-      return;
     }
 
+    // update head node pointer
     node.next = this.head;
-    this.head.prev = node;
-    this.head = node;
+    if (this.head != null) {
+      this.head.prev = node;
+    } else {
+      this.head = node;
+    }
+
+    // update head pointer
+    // It maybe prepend a linked list,
+    // so we need to find the first node.
+    let head = this.head;
+    while (head.prev) {
+      head = head.prev;
+    }
+    this.head = head;
+
+    return this;
   }
 
-  find(iterator) {
+  insertAfter(prevNode, node) {
+    node = LinkedList.normalizeNode(node);
+
+    if (prevNode == null) {
+      console.warn("LinkedList: The previous node cannot be null.");
+      return this;
+    }
+
+    // we find the last node for "node"
+    // and update next pointer for the last node
+    let nodeNext = node;
+    while (nodeNext.next != null) {
+      nodeNext = nodeNext.next;
+    }
+    nodeNext.next = prevNode.next;
+
+    // and then we linked previous node and node.
+    prevNode.next = node;
+    node.prev = prevNode;
+
+    // if last node for "node" have next pointer
+    // and we fix it.
+    if (nodeNext.next) {
+      nodeNext.next.prev = nodeNext;
+    }
+
+    // update tail pointer
+    // It maybe insert a linked list,
+    // so we need to find the last node.
+    let tail = this.tail;
+    while (tail != null && tail.next != null) {
+      tail = tail.next;
+    }
+    this.tail = tail;
+
+    return this;
+  }
+
+  find(compareFunc) {
     let node = this.head;
 
     while (node) {
-      if (isFunc(iterator) && iterator(node) === 0) {
+      if (isFunc(compareFunc) && compareFunc(node)) {
         return node;
       }
 
@@ -66,30 +134,26 @@ export default class LinkedList {
     }
   }
 
-  delete(compareFunction) {
-    const node = this.find(compareFunction);
+  delete(compareFunc) {
+    const node = this.find(compareFunc);
 
-    if (!node) return;
+    if (!node) return this;
 
-    if (this.head === node) {
-      if (this.tail === node) {
-        this.head = this.tail = null;
-      } else {
-        this.head = node.next;
-        node.next = null;
-      }
-    } else if (this.tail === node) {
-      this.tail = node.prev;
-      node.prev = null;
-    } else {
-      const next = node.next;
-      node.data = next.data;
-      node.next = next.next;
-      next.prev = next.next = null;
-    }
+    // update prev node and next node pointer
+    if (node.next) node.next.prev = node.prev;
+    if (node.prev) node.prev.next = node.next;
+
+    // update head and tail pointer
+    if (this.head === node) this.head = node.next;
+    if (this.tail === node) this.tail = node.prev;
+
+    // clear delete node pointer
+    node.prev = node.next = null;
+
+    return this;
   }
 
-  travel(iterator) {
+  traverse(iterator) {
     let node = this.head;
 
     while (node) {
@@ -97,15 +161,29 @@ export default class LinkedList {
 
       node = node.next;
     }
+
+    return this;
+  }
+
+  traverseRight(iterator) {
+    let node = this.tail;
+
+    while (node) {
+      isFunc(iterator) && iterator(node);
+
+      node = node.prev;
+    }
+
+    return this;
   }
 
   toString() {
     const result = [];
 
-    this.travel(node => {
+    this.traverse(node => {
       result.push(node.data);
     });
 
-    return `[${result.join(",")}]`;
+    return result.join(",");
   }
 }
