@@ -1,13 +1,11 @@
+import { isFunc } from '../shared/util';
+
 export class Node {
   constructor(data) {
     this.data = data;
     this.prev = null;
     this.next = null;
   }
-}
-
-function isFunc(fn) {
-  return typeof fn === "function";
 }
 
 export default class LinkedList {
@@ -177,13 +175,17 @@ export default class LinkedList {
     return this;
   }
 
-  toString() {
+  toArray() {
     const result = [];
 
     this.traverse(node => {
-      result.push(node.data);
+      result.push(node);
     });
 
-    return result.join(",");
+    return result;
+  }
+
+  toString() {
+    return this.toArray().map(node => node.data).join(",");
   }
 }
