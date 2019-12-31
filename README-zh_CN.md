@@ -11,7 +11,7 @@
 
 - [ ] - 数组
 - [x] - [链表](data-structure/Linked-List.js)
-- [ ] - 队列
+- [x] - [队列](data-structure/Queue.js)
 - [ ] - 栈
 - [ ] - 散列表
 - [ ] - 图

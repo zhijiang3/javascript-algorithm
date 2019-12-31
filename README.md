@@ -11,7 +11,7 @@ English | [简体中文](README-zh_CN.md)
 
 - [ ] - Array
 - [x] - [Linked List](data-structure/Linked-List.js)
-- [ ] - Queue
+- [x] - [Queue](data-structure/Queue.js)
 - [ ] - Stack
 - [ ] - Hash Table
 - [ ] - Graph
