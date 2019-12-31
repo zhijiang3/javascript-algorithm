@@ -1,4 +1,4 @@
-import { default as LinkedList } from './Linked-List';
+import LinkedList from './Linked-List';
 
 export default class Stack {
   constructor() {
@@ -6,7 +6,7 @@ export default class Stack {
   }
 
   isEmpty() {
-    return this.size() === 0;
+    return this.linkedList.head == null;
   }
 
   size() {
@@ -30,5 +30,9 @@ export default class Stack {
     this.linkedList.delete(node => node === this.linkedList.head);
 
     return nodeHead ? nodeHead.data : null;
+  }
+
+  toString() {
+    return this.linkedList.toString();
   }
 }
