@@ -1,4 +1,5 @@
 import LinkedList from './Linked-List';
+import { traverse } from '../algorithm/linked-list';
 
 export default class Stack {
   constructor() {
@@ -12,7 +13,7 @@ export default class Stack {
   size() {
     let count = 0;
 
-    this.linkedList.traverse(() => {
+    traverse(this.linkedList, () => {
       count++;
     });
 
@@ -27,7 +28,8 @@ export default class Stack {
 
   pop() {
     const nodeHead = this.linkedList.head;
-    this.linkedList.delete(node => node === this.linkedList.head);
+
+    this.linkedList.deleteHead();
 
     return nodeHead ? nodeHead.data : null;
   }

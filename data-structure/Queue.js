@@ -15,7 +15,8 @@ export default class Queue {
 
   dequeue() {
     const headNode = this.linkedList.head;
-    this.linkedList.delete(node => node === this.linkedList.head);
+
+    this.linkedList.deleteHead();
 
     return headNode ? headNode.data : null;
   }

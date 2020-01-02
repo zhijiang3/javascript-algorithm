@@ -124,12 +124,18 @@ export default class LinkedList {
     let node = this.head;
 
     while (node) {
-      if (isFunc(compareFunc) && compareFunc(node)) {
+      if (isFunc(compareFunc) && compareFunc(node.data)) {
         return node;
       }
 
       node = node.next;
     }
+  }
+
+  deleteHead() {
+    if (this.head == null) return null;
+
+    this.delete(data => data === this.head.data);
   }
 
   delete(compareFunc) {
@@ -151,36 +157,15 @@ export default class LinkedList {
     return this;
   }
 
-  traverse(iterator) {
+  toArray() {
+    const result = [];
     let node = this.head;
 
     while (node) {
-      isFunc(iterator) && iterator(node);
+      result.push(node);
 
       node = node.next;
     }
-
-    return this;
-  }
-
-  traverseRight(iterator) {
-    let node = this.tail;
-
-    while (node) {
-      isFunc(iterator) && iterator(node);
-
-      node = node.prev;
-    }
-
-    return this;
-  }
-
-  toArray() {
-    const result = [];
-
-    this.traverse(node => {
-      result.push(node);
-    });
 
     return result;
   }
