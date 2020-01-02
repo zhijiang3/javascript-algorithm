@@ -5,5 +5,3 @@ export function hasOwn(obj, key) {
 export function isFunc(fn) {
   return typeof fn === 'function';
 }
-
-export function noop() { /* do nothing */ }

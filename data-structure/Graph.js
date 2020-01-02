@@ -1,97 +1,170 @@
-export class Node {
+import LinkedList from "./Linked-List";
+import { hasOwn } from '../shared/util';
+
+export class VertexNode {
   constructor(value) {
     this.value = value;
-    this.adjacentList = []; // 邻接列表
+    this.edges = new LinkedList();
   }
 
-  addAdjacent(node) {
-    this.adjacentList.push(node);
+  getKey() {
+    return this.value;
   }
 
-  removeAdjacent(node) {
-    const index = this.adjacentList.indexOf(node);
+  getEdge(vertex) {
+    const edgeNode = this.edges.find(edge => {
+      const { startVertex, endVertex } = edge;
 
-    if (index > -1) {
-      this.adjacentList.splice(index, 1);
-      return node;
-    }
+      return endVertex === vertex || startVertex === vertex;
+    });
+
+    return edgeNode ? edgeNode.data : null;
   }
 
-  getAdjacentList() {
-    return this.adjacentList;
+  addEdge(edge) {
+    this.edges.append(edge);
   }
 
-  isAdjacent(node) {
-    return this.adjacentList.indexOf(node) > -1;
+  deleteEdge(deleteEdge) {
+    this.edges.delete(edge => edge === deleteEdge);
+  }
+
+  getNeighbors() {
+    const neighbors = this.edges.toArray();
+
+    // 如果是无向图，结束顶点可能是指向自身的
+    return neighbors.map(node => {
+      return node.data.endVertex === this
+        ? node.data.startVertex
+        : node.data.endVertex;
+    });
   }
 }
 
-export const UNDIRECTED_GRAPH = Symbol("undirected graph");
-export const DIRECTED_GRAPH = Symbol("directed graph");
+export class EdgeNode {
+  constructor(startVertex, endVertex, weight = 0) {
+    this.startVertex = startVertex;
+    this.endVertex = endVertex;
+    this.weight = weight;
+  }
+
+  getKey() {
+    return `${this.startVertex.getKey()}-${this.endVertex.getKey()}`;
+  }
+}
 
 export default class Graph {
-  constructor(edgeDirection = UNDIRECTED_GRAPH) {
-    this.nodes = new Map();
-    this.edgeDirection = edgeDirection;
+  constructor(isDirected = false) {
+    this.vertices = {};
+    this.edges = {};
+    this.isDirected = isDirected;
   }
 
-  addEdge(source, destination) {
-    const sourceNode = this.addVertex(source)
-    const destinationNode = this.addVertex(destination);
+  addVertex(vertex) {
+    this.vertices[vertex.getKey()] = vertex;
 
-    sourceNode.addAdjacent(destinationNode);
-    if (this.edgeDirection === UNDIRECTED_GRAPH) {
-      destinationNode.addAdjacent(sourceNode);
+    return this;
+  }
+
+  deleteVertex(deleteVertex) {
+    const vertices = this.getAllVertices();
+
+    // 删除带有 vertex 节点的边
+    vertices.forEach(vertex => {
+      vertex.deleteEdge(vertex.getEdge(deleteVertex));
+    });
+
+    delete this.vertices[deleteVertex.getKey()];
+  }
+
+  addEdge(edge) {
+    const startVertex = edge.startVertex;
+    const endVertex = edge.endVertex;
+
+    if (!this.vertices[startVertex.getKey()]) {
+      this.addVertex(startVertex);
     }
 
-    return [sourceNode, destinationNode];
-  }
-
-  removeEdge(source, destination) {
-    const sourceNode = this.nodes.get(source);
-    const destinationNode = this.nodes.get(destination);
-
-    if (sourceNode && destinationNode) {
-      sourceNode.removeAdjacent(destinationNode);
-      if (this.edgeDirection === UNDIRECTED_GRAPH) {
-        destinationNode.removeAdjacent(sourceNode);
-      }
+    if (!this.vertices[endVertex.getKey()]) {
+      this.addVertex(endVertex);
     }
 
-    return [sourceNode, destinationNode];
-  }
+    this.edges[edge.getKey()] = edge;
 
-  addVertex(value) {
-    if (this.nodes.has(value)) {
-      return this.nodes.get(value);
+    if (this.isDirected) {
+      startVertex.addEdge(edge);
     } else {
-      const vertex = new Node(value);
-      this.nodes.set(value, vertex);
-      return vertex;
+      startVertex.addEdge(edge);
+      endVertex.addEdge(edge);
     }
+
+    return this;
   }
 
-  removeVertex(value) {
-    const vertex = this.nodes.get(value);
+  deleteEdge(edge) {
+    const startVertex = edge.startVertex;
+    const endVertex = edge.endVertex;
 
-    if (vertex) {
-      for (const node of this.nodes.values()) {
-        node.removeAdjacent(vertex);
-      }
+    if (this.isDirected) {
+      startVertex.deleteEdge(edge);
+    } else {
+      startVertex.deleteEdge(edge);
+      endVertex.deleteEdge(edge);
     }
 
-    return this.nodes.delete(value);
+    delete this.edges[edge.getKey()];
+  }
+
+  getNeighbors(vertex) {
+    return vertex.getNeighbors();
+  }
+
+  getAllVertices() {
+    const vertices = [];
+
+    for (let vertexKey in this.vertices) {
+      if (!hasOwn(this.vertices, vertexKey)) continue;
+
+      vertices.push(this.vertices[vertexKey]);
+    }
+
+    return vertices;
+  }
+
+  findEdge(startVertex, endVertex) {
+    const vertex = this.vertices[startVertex.getKey()];
+
+    if (!vertex) return null;
+
+    return vertex.getEdge(endVertex);
+  }
+
+  getAdjacencyMatrix() {
+    const vertices = this.getAllVertices();
+    const verticesIndex = vertices.reduce((verticesIndex, vertex, index) => {
+      verticesIndex[vertex.getKey()] = index;
+
+      return verticesIndex;
+    }, {});
+
+    // 如果矩阵没有邻边，则权重默认为 Infinity
+    const adjacencyMatrix = Array(vertices.length).fill(null).map(() => {
+      return Array(vertices.length).fill(Infinity);
+    });
+
+    vertices.forEach((vertex, vertexIndex) => {
+      // 这里只需要调整有邻边的顶点的权重即可
+      vertex.getNeighbors().forEach(neighbor => {
+        // 通过顶点索引的映射拿到该顶点在矩阵中的位置
+        const neighborIndex = verticesIndex[neighbor.getKey()];
+        adjacencyMatrix[vertexIndex][neighborIndex] = this.findEdge(vertex, neighbor).weight;
+      });
+    });
+
+    return adjacencyMatrix;
   }
 
   toString() {
-    const result = [];
-
-    for (let key of this.nodes.keys()) {
-      const node = this.nodes.get(key);
-
-      result.push(`${node.value}: [${node.adjacentList.map(node => node.value).join(", ")}]`);
-    }
-
-    return result.join(", ");
+    return Object.keys(this.vertices).toString();
   }
 }
