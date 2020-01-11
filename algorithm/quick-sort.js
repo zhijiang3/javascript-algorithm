@@ -1,9 +1,4 @@
 /**
- * 快速排序
- *
- * 时间复杂度：
- * 空间复杂度：
- *
  * @param {Array<Number>} arr 需要排序的数组
  * @return {Array<Number>} 排序后的数组
  */

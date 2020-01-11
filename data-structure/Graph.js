@@ -2,15 +2,25 @@ import LinkedList from "./Linked-List";
 import { hasOwn } from '../shared/util';
 
 export class VertexNode {
+  /**
+   * @param {*} value
+   */
   constructor(value) {
     this.value = value;
     this.edges = new LinkedList();
   }
 
+  /**
+   * @return {*}
+   */
   getKey() {
     return this.value;
   }
 
+  /**
+   * @param {VertexNode} vertex
+   * @return {(EdgeNode|null)}
+   */
   getEdge(vertex) {
     const edgeNode = this.edges.find(edge => {
       const { startVertex, endVertex } = edge;
@@ -21,14 +31,23 @@ export class VertexNode {
     return edgeNode ? edgeNode.data : null;
   }
 
+  /**
+   * @param {EdgeNode} edge
+   */
   addEdge(edge) {
     this.edges.append(edge);
   }
 
+  /**
+   * @param {EdgeNode} deleteEdge
+   */
   deleteEdge(deleteEdge) {
     this.edges.delete(edge => edge === deleteEdge);
   }
 
+  /**
+   * @return {VertexNode[]}
+   */
   getNeighbors() {
     const neighbors = this.edges.toArray();
 
@@ -42,30 +61,48 @@ export class VertexNode {
 }
 
 export class EdgeNode {
+  /**
+   * @param {VertexNode} startVertex
+   * @param {VertexNode} endVertex
+   * @param {number} weight
+   */
   constructor(startVertex, endVertex, weight = 0) {
     this.startVertex = startVertex;
     this.endVertex = endVertex;
     this.weight = weight;
   }
 
+  /**
+   * @return {string}
+   */
   getKey() {
     return `${this.startVertex.getKey()}-${this.endVertex.getKey()}`;
   }
 }
 
 export default class Graph {
+  /**
+   * @param {boolean} isDirected
+   */
   constructor(isDirected = false) {
     this.vertices = {};
     this.edges = {};
     this.isDirected = isDirected;
   }
 
+  /**
+   * @param {VertexNode} vertex
+   * @return {Graph}
+   */
   addVertex(vertex) {
     this.vertices[vertex.getKey()] = vertex;
 
     return this;
   }
 
+  /**
+   * @param {VertexNode} deleteVertex
+   */
   deleteVertex(deleteVertex) {
     const vertices = this.getAllVertices();
 
@@ -77,6 +114,10 @@ export default class Graph {
     delete this.vertices[deleteVertex.getKey()];
   }
 
+  /**
+   * @param {EdgeNode} edge
+   * @return {Graph}
+   */
   addEdge(edge) {
     const startVertex = edge.startVertex;
     const endVertex = edge.endVertex;
@@ -101,6 +142,9 @@ export default class Graph {
     return this;
   }
 
+  /**
+   * @param {EdgeNode} edge
+   */
   deleteEdge(edge) {
     const startVertex = edge.startVertex;
     const endVertex = edge.endVertex;
@@ -115,10 +159,17 @@ export default class Graph {
     delete this.edges[edge.getKey()];
   }
 
+  /**
+   * @param {VertexNode} vertex
+   * @return {VertexNode[]}
+   */
   getNeighbors(vertex) {
     return vertex.getNeighbors();
   }
 
+  /**
+   * @return {VertexNode[]}
+   */
   getAllVertices() {
     const vertices = [];
 
@@ -131,6 +182,11 @@ export default class Graph {
     return vertices;
   }
 
+  /**
+   * @param {VertexNode} startVertex
+   * @param {VertexNode} endVertex
+   * @return {(EdgeNode|null)}
+   */
   findEdge(startVertex, endVertex) {
     const vertex = this.vertices[startVertex.getKey()];
 
@@ -139,6 +195,9 @@ export default class Graph {
     return vertex.getEdge(endVertex);
   }
 
+  /**
+   * @return {number[][]}
+   */
   getAdjacencyMatrix() {
     const vertices = this.getAllVertices();
     const verticesIndex = vertices.reduce((verticesIndex, vertex, index) => {
@@ -164,6 +223,9 @@ export default class Graph {
     return adjacencyMatrix;
   }
 
+  /**
+   * @return {string}
+   */
   toString() {
     return Object.keys(this.vertices).toString();
   }

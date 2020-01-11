@@ -1,5 +1,9 @@
 import { isFunc } from "../shared/util";
 
+/**
+ * @param {LinkedList} linkedList
+ * @param {Function} callback
+ */
 export function traverse(linkedList, callback) {
   let node = linkedList.head;
 
@@ -10,6 +14,10 @@ export function traverse(linkedList, callback) {
   }
 }
 
+/**
+ * @param {LinkedList} linkedList
+ * @param {Function} callback
+ */
 export function reserveTraverse(linkedList, callback) {
   let node = linkedList.tail
 

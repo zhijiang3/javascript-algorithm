@@ -1,9 +1,4 @@
 /**
- * 选择排序
- *
- * 时间复杂度：O(n^2)
- * 空间复杂度：
- *
  * @param {Array<Number>} arr 待排序的数组
  */
 export default function selectionSort(arr = []) {

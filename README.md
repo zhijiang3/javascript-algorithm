@@ -5,20 +5,11 @@ English | [简体中文](README-zh_CN.md)
 - [x] - [Binary Search](algorithm/binary-search.js)
 - [x] - [Selection Sort](algorithm/selection-sort.js)
 - [x] - [Quick Sort](algorithm/quick-sort.js)
-- [ ] - Breadth First Search (BFS)
+- [x] - [Breadth First Search (BFS)](algorithm/breadth-first-search.js)
 
-### Data structure involved
+# Data structure
 
-- [ ] - Array
 - [x] - [Linked List](data-structure/Linked-List.js)
 - [x] - [Queue](data-structure/Queue.js)
-- [ ] - Stack
-- [ ] - Hash Table
-- [ ] - Graph
-
-### Concepts involved
-
-- [ ] - Big O Notation
-- [ ] - How Random Access Memory (RAM) Works
-- [ ] - Recursive
-- [ ] - Dynamic Programming
+- [x] - [Stack](data-structure/Stack.js)
+- [x] - [Graph](data-structure/Graph.js)

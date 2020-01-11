@@ -1,14 +1,25 @@
 import { isFunc } from '../shared/util';
 
 export class Node {
+  /**
+   * @param {*} data
+   */
   constructor(data) {
     this.data = data;
+
+    /** @var {LinkedListNode} */
     this.prev = null;
+
+    /** @var {LinkedListNode} */
     this.next = null;
   }
 }
 
 export default class LinkedList {
+  /**
+   * @param {*} node
+   * @return {LinkedListNode}
+   */
   static normalizeNode(node) {
     if (!(node instanceof Node)) {
       return new Node(node);
@@ -18,10 +29,17 @@ export default class LinkedList {
   }
 
   constructor() {
+    /** @var {LinkedListNode} */
     this.head = null;
+
+    /** @var {LinkedListNode} */
     this.tail = null;
   }
 
+  /**
+   * @param {*} node
+   * @return {LinkedList}
+   */
   append(node) {
     if (node == null) return this;
 
@@ -52,6 +70,10 @@ export default class LinkedList {
     return this;
   }
 
+  /**
+   * @param {*} node
+   * @return {LinkedList}
+   */
   prepend(node) {
     if (node == null) return this;
 
@@ -82,6 +104,11 @@ export default class LinkedList {
     return this;
   }
 
+  /**
+   * @param {LinkedListNode} prevNode
+   * @param {*} node
+   * @return {LinkedList}
+   */
   insertAfter(prevNode, node) {
     node = LinkedList.normalizeNode(node);
 
@@ -120,6 +147,10 @@ export default class LinkedList {
     return this;
   }
 
+  /**
+   * @param {Function} compareFunc
+   * @return {(LinkedListNode|null)}
+   */
   find(compareFunc) {
     let node = this.head;
 
@@ -132,12 +163,23 @@ export default class LinkedList {
     }
   }
 
+  /**
+   * @return {(LinkedListNode|null)}
+   */
   deleteHead() {
     if (this.head == null) return null;
 
+    const deleteHead = this.head;
+
     this.delete(data => data === this.head.data);
+
+    return deleteHead;
   }
 
+  /**
+   * @param {Function} compareFunc
+   * @return {LinkedList}
+   */
   delete(compareFunc) {
     const node = this.find(compareFunc);
 
@@ -157,6 +199,10 @@ export default class LinkedList {
     return this;
   }
 
+
+  /**
+   * @return {LinkedListNode[]}
+   */
   toArray() {
     const result = [];
     let node = this.head;
@@ -170,6 +216,9 @@ export default class LinkedList {
     return result;
   }
 
+  /**
+   * @return {string}
+   */
   toString() {
     return this.toArray().map(node => node.data).join(",");
   }
