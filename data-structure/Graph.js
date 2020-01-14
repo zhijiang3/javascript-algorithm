@@ -1,5 +1,5 @@
 import LinkedList from "./Linked-List";
-import { hasOwn } from '../shared/util';
+import { hasOwn } from "../shared/util";
 
 export class VertexNode {
   /**
@@ -53,9 +53,7 @@ export class VertexNode {
 
     // 如果是无向图，结束顶点可能是指向自身的
     return neighbors.map(node => {
-      return node.data.endVertex === this
-        ? node.data.startVertex
-        : node.data.endVertex;
+      return node.data.endVertex === this ? node.data.startVertex : node.data.endVertex;
     });
   }
 }
@@ -207,9 +205,11 @@ export default class Graph {
     }, {});
 
     // 如果矩阵没有邻边，则权重默认为 Infinity
-    const adjacencyMatrix = Array(vertices.length).fill(null).map(() => {
-      return Array(vertices.length).fill(Infinity);
-    });
+    const adjacencyMatrix = Array(vertices.length)
+      .fill(null)
+      .map(() => {
+        return Array(vertices.length).fill(Infinity);
+      });
 
     vertices.forEach((vertex, vertexIndex) => {
       // 这里只需要调整有邻边的顶点的权重即可

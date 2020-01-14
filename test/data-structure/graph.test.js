@@ -39,6 +39,7 @@ test("用乐谱换钢琴", () => {
     .addEdge(guitarPianoEdge)
     .addEdge(drumKitPianoEdge);
 
+  /* prettier-ignore */
   expect(graph.getAdjacencyMatrix()).toEqual([
     [Infinity,       0,        5, Infinity, Infinity, Infinity],
     [Infinity, Infinity, Infinity,       30, Infinity,       35],
@@ -50,6 +51,7 @@ test("用乐谱换钢琴", () => {
 
   graph.deleteVertex(drumKitVertex);
 
+  /* prettier-ignore */
   expect(graph.getAdjacencyMatrix()).toEqual([
     [Infinity,        0,        5, Infinity, Infinity],
     [Infinity, Infinity, Infinity,       30, Infinity],
@@ -60,6 +62,7 @@ test("用乐谱换钢琴", () => {
 
   graph.deleteEdge(sheetMusicRecordEdge);
 
+  /* prettier-ignore */
   expect(graph.getAdjacencyMatrix()).toEqual([
     [Infinity,        0, Infinity, Infinity, Infinity],
     [Infinity, Infinity, Infinity,       30, Infinity],
@@ -67,7 +70,6 @@ test("用乐谱换钢琴", () => {
     [Infinity, Infinity, Infinity, Infinity,       20],
     [Infinity, Infinity, Infinity, Infinity, Infinity]
   ]);
-
 });
 
 test("无向图", () => {
@@ -91,6 +93,7 @@ test("无向图", () => {
 
   expect(graph.toString()).toBe("A,B,C,D");
 
+  /* prettier-ignore */
   expect(graph.getAdjacencyMatrix()).toEqual([
     [Infinity,        0, Infinity,        0],
     [       0, Infinity,        0, Infinity],

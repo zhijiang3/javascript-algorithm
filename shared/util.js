@@ -12,5 +12,5 @@ export function hasOwn(obj, key) {
  * @return {boolean}
  */
 export function isFunc(fn) {
-  return typeof fn === 'function';
+  return typeof fn === "function";
 }

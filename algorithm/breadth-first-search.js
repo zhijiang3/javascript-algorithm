@@ -1,5 +1,5 @@
 import Queue from "../data-structure/Queue";
-import { isFunc } from '../shared/util';
+import { isFunc } from "../shared/util";
 
 /**
  * @param {Graph} graph

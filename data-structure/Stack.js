@@ -1,5 +1,5 @@
-import LinkedList from './Linked-List';
-import { traverse } from '../algorithm/linked-list';
+import LinkedList from "./Linked-List";
+import { traverse } from "../algorithm/linked-list";
 
 export default class Stack {
   constructor() {

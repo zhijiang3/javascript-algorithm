@@ -15,7 +15,7 @@ function printListReserve(list) {
   const arr = [];
 
   reserveTraverse(list, data => {
-    arr.push(data)
+    arr.push(data);
   });
 
   return arr.join(",");
@@ -107,7 +107,10 @@ describe("在链表中添加节点", () => {
 
   test("在链表中间添加一个链表，并且指向正确", () => {
     const insertAfterList = new LinkedList().append(5).append(6);
-    list.insertAfter(list.find(data => data === 2), insertAfterList.head);
+    list.insertAfter(
+      list.find(data => data === 2),
+      insertAfterList.head
+    );
     expect(list.toString()).toBe("1,2,5,6,3");
     expect(printList(list)).toBe("1,2,5,6,3");
     expect(printListReserve(list)).toBe("3,6,5,2,1");
@@ -134,7 +137,10 @@ describe("删除节点", () => {
   });
 
   test("删除头节点", () => {
-    list.prepend(1).append(2).append(3);
+    list
+      .prepend(1)
+      .append(2)
+      .append(3);
     list.delete(data => data === 1);
     expect(list.toString()).toBe("2,3");
     expect(printList(list)).toBe("2,3");

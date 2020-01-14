@@ -19,7 +19,7 @@ export function traverse(linkedList, callback) {
  * @param {Function} callback
  */
 export function reserveTraverse(linkedList, callback) {
-  let node = linkedList.tail
+  let node = linkedList.tail;
 
   while (node != null) {
     isFunc(callback) && callback(node.data);

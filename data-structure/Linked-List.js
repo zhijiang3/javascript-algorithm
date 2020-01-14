@@ -1,4 +1,4 @@
-import { isFunc } from '../shared/util';
+import { isFunc } from "../shared/util";
 
 export class Node {
   /**
@@ -199,7 +199,6 @@ export default class LinkedList {
     return this;
   }
 
-
   /**
    * @return {LinkedListNode[]}
    */
@@ -220,6 +219,8 @@ export default class LinkedList {
    * @return {string}
    */
   toString() {
-    return this.toArray().map(node => node.data).join(",");
+    return this.toArray()
+      .map(node => node.data)
+      .join(",");
   }
 }
