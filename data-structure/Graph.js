@@ -128,7 +128,11 @@ export default class Graph {
       this.addVertex(endVertex);
     }
 
-    this.edges[edge.getKey()] = edge;
+    if (this.edges[edge.getKey()]) {
+      throw new Error(`The Edge "${edge.getKey()}" has been added before`);
+    } else {
+      this.edges[edge.getKey()] = edge;
+    }
 
     if (this.isDirected) {
       startVertex.addEdge(edge);
@@ -166,6 +170,14 @@ export default class Graph {
   }
 
   /**
+   * @param {string} vertexKey
+   * @return {(VertexNode|null)}
+   */
+  getVertexByKey(vertexKey) {
+    return this.vertices[vertexKey];
+  }
+
+  /**
    * @return {VertexNode[]}
    */
   getAllVertices() {
@@ -186,7 +198,7 @@ export default class Graph {
    * @return {(EdgeNode|null)}
    */
   findEdge(startVertex, endVertex) {
-    const vertex = this.vertices[startVertex.getKey()];
+    const vertex = this.getVertexByKey(startVertex.getKey());
 
     if (!vertex) return null;
 
