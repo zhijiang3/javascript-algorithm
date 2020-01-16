@@ -6,12 +6,12 @@
 - [x] - [选择排序](algorithm/selection-sort.js)
 - [x] - [快速排序](algorithm/quick-sort.js)
 - [x] - [广度优先搜索](algorithm/breadth-first-search.js)
-- [ ] - 迪杰斯特拉(Dijkstra)算法
+- [x] - [迪杰斯特拉(Dijkstra)算法](algorithm/dijkstra.js)
 - [ ] - 贝尔曼-福特(Bellman–Ford)算法
-- [ ] - 贪婪算法
+- [ ] - 普里姆算法
 - [ ] - 最长公共子串（动态规划）
 - [ ] - 最长公共子序列（动态规划）
-- [ ] - 傅里叶变换
+- [ ] - 快速傅里叶变换
 - [ ] - 布隆过滤器
 - [ ] - SHA(secure hash algorithm)
 - [ ] - 局部敏感的散列算法 Simhash
@@ -27,3 +27,4 @@
 - [ ] - 二叉树
 - [ ] - B树
 - [ ] - 红黑树
+- [ ] - 堆
