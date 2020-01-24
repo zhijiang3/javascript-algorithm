@@ -1,5 +1,5 @@
 /**
- * @param {Array<Number>} arr 待排序的数组
+ * @param {number[]} arr 待排序的数组
  */
 export default function selectionSort(arr = []) {
   let min;

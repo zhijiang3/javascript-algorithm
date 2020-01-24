@@ -21,6 +21,7 @@
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
+    "@types/jest": "^24.9.1",
     "@types/prettier": "^1.19.0",
     "babel-jest": "^24.9.0",
     "husky": "3.1.0",

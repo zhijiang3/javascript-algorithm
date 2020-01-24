@@ -1,6 +1,6 @@
 /**
- * @param {Array<Number>} arr 需要排序的数组
- * @return {Array<Number>} 排序后的数组
+ * @param {number[]} arr 需要排序的数组
+ * @return {number[]} 排序后的数组
  */
 export default function quickSort(arr = []) {
   if (arr.length <= 1) return arr;

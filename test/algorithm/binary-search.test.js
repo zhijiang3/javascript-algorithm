@@ -3,7 +3,9 @@ import binarySearch from "algorithm/binary-search";
 test("查找不存在的元素", () => {
   expect(binarySearch([1, 2, 3, 4], 5)).toBe(-1);
   expect(binarySearch([], 3)).toBe(-1);
+  // @ts-ignore
   expect(binarySearch([])).toBe(-1);
+  // @ts-ignore
   expect(binarySearch()).toBe(-1);
 });
 

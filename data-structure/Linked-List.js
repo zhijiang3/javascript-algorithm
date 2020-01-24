@@ -148,7 +148,7 @@ export default class LinkedList {
   }
 
   /**
-   * @param {Function} compareFunc
+   * @param {function} compareFunc
    * @return {(LinkedListNode|null)}
    */
   find(compareFunc) {
@@ -177,7 +177,7 @@ export default class LinkedList {
   }
 
   /**
-   * @param {Function} compareFunc
+   * @param {function} compareFunc
    * @return {LinkedList}
    */
   delete(compareFunc) {

@@ -4,7 +4,7 @@ import { isFunc } from "shared/util";
 /**
  * @param {Graph} graph
  * @param {VertexNode} startVertex
- * @param {Function} enterVertex
+ * @param {function} enterVertex
  */
 export default function breadthFirstSearch(graph, startVertex, enterVertex) {
   const vertexQueue = new Queue();

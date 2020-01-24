@@ -1,0 +1,12 @@
+{
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "checkJs": true,
+    "paths": {
+      "shared/*": ["./shared/*"],
+      "data-structure/*": ["./data-structure/*"],
+      "algorithm/*": ["./algorithm/*"]
+    }
+  }
+}

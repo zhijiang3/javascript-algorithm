@@ -1,14 +1,14 @@
 /**
- * @param {Array<Number>} list 有序的数组
- * @param {Number} item 要查找的元素
- * @return {Number} 返回元素的索引，未找到时返回 -1
+ * @param {number[]} list 有序的数组
+ * @param {number} item 要查找的元素
+ * @return {number} 返回元素的索引，未找到时返回 -1
  */
 export default function binarySearch(list = [], item) {
   let low = 0;
   let high = list.length - 1;
 
   while (low <= high) {
-    let mid = parseInt((low + high) / 2);
+    let mid = Math.floor((low + high) / 2);
     let guess = list[mid];
 
     if (guess > item) {

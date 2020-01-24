@@ -217,11 +217,14 @@ export default class Graph {
     }, {});
 
     // 如果矩阵没有邻边，则权重默认为 Infinity
-    const adjacencyMatrix = Array(vertices.length)
-      .fill(null)
-      .map(() => {
-        return Array(vertices.length).fill(Infinity);
-      });
+    /** @type {number[][]} */
+    const adjacencyMatrix = [];
+    for (let i = 0; i < vertices.length; i++) {
+      adjacencyMatrix[i] = [];
+      for (let j = 0; j < vertices.length; j++) {
+        adjacencyMatrix[i][j] = Infinity;
+      }
+    }
 
     vertices.forEach((vertex, vertexIndex) => {
       // 这里只需要调整有邻边的顶点的权重即可

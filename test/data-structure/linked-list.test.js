@@ -30,24 +30,28 @@ describe("空值", () => {
   });
 
   test("在链表尾部追加", () => {
+    // @ts-ignore
     list.append();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
   });
 
   test("在链表头部追加", () => {
+    // @ts-ignore
     list.prepend();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
   });
 
   test("删除", () => {
+    // @ts-ignore
     list.delete();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
   });
 
   test("在链表中插入节点", () => {
+    // @ts-ignore
     list.insertAfter();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();

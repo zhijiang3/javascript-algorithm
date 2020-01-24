@@ -1,7 +1,7 @@
 /**
  * @param {Graph} graph
  * @param {VertexNode} startVertex
- * @return {{ previousVertices: { [string]: VertexNode }, distances: { [string]: number } }}
+ * @return {{ previousVertices, distances }}
  */
 export default function dijkstra(graph, startVertex) {
   const processed = {};
