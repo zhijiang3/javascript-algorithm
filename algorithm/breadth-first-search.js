@@ -11,6 +11,7 @@ export default function breadthFirstSearch(graph, startVertex, enterVertex) {
   const visited = {};
 
   vertexQueue.enqueue(startVertex);
+  visited[startVertex.getKey()] = true;
 
   let previousVertex = null;
   while (!vertexQueue.isEmpty()) {
@@ -18,11 +19,10 @@ export default function breadthFirstSearch(graph, startVertex, enterVertex) {
 
     isFunc(enterVertex) && enterVertex({ previousVertex, currentVertex });
 
-    visited[currentVertex.getKey()] = true;
-
     graph.getNeighbors(currentVertex).forEach(nextVertex => {
       if (!visited[nextVertex.getKey()]) {
-        queue.enqueue(nextVertex);
+        vertexQueue.enqueue(nextVertex);
+        visited[nextVertex.getKey()] = true;
       }
     });
 
