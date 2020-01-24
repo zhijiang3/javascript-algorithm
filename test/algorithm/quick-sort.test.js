@@ -1,4 +1,4 @@
-import quickSort from "../../algorithm/quick-sort";
+import quickSort from "algorithm/quick-sort";
 
 test("空值的情况", () => {
   expect(quickSort()).toEqual([]);

@@ -1,5 +1,5 @@
-import LinkedList from "./Linked-List";
-import { hasOwn } from "../shared/util";
+import LinkedList from "data-structure/Linked-List";
+import { hasOwn } from "shared/util";
 
 export class VertexNode {
   /**

@@ -1,4 +1,4 @@
-import LinkedList from "./Linked-List";
+import LinkedList from "data-structure/Linked-List";
 
 export default class Queue {
   constructor() {

@@ -1,4 +1,4 @@
-import Queue from "../../data-structure/Queue";
+import Queue from "data-structure/Queue";
 
 test("创建空队列", () => {
   const queue = new Queue();

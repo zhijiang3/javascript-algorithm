@@ -1,4 +1,4 @@
-import Stack from "../../data-structure/Stack";
+import Stack from "data-structure/Stack";
 
 test("创建空栈堆", () => {
   const stack = new Stack();

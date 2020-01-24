@@ -1,5 +1,5 @@
-import { default as LinkedList, Node } from "../../data-structure/Linked-List";
-import { traverse, reserveTraverse } from "../../algorithm/linked-list";
+import { default as LinkedList, Node } from "data-structure/Linked-List";
+import { traverse, reserveTraverse } from "algorithm/linked-list";
 
 function printList(list) {
   const arr = [];

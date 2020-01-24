@@ -1,4 +1,4 @@
-import { isFunc } from "../shared/util";
+import { isFunc } from "shared/util";
 
 export class Node {
   /**

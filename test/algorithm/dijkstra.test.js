@@ -1,5 +1,5 @@
-import { default as Graph, VertexNode, EdgeNode } from "../../data-structure/Graph";
-import dijkstra from "../../algorithm/dijkstra";
+import { default as Graph, VertexNode, EdgeNode } from "data-structure/Graph";
+import dijkstra from "algorithm/dijkstra";
 
 test("为有向图找到所有顶点的最短路径", () => {
   const vertexA = new VertexNode("A");

@@ -1,4 +1,4 @@
-import { default as Graph, VertexNode, EdgeNode } from "../../data-structure/Graph";
+import { default as Graph, VertexNode, EdgeNode } from "data-structure/Graph";
 
 test("用乐谱换钢琴", () => {
   const graph = new Graph(true);

@@ -1,4 +1,4 @@
-import selectionSort from "../../algorithm/selection-sort";
+import selectionSort from "algorithm/selection-sort";
 
 function sortArr(arr) {
   return arr.slice().sort((a, b) => a - b);
