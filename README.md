@@ -7,7 +7,7 @@ English | [简体中文](README-zh_CN.md)
 - [x] - [Quick Sort](algorithm/quick-sort.js)
 - [x] - [Breadth First Search (BFS)](algorithm/breadth-first-search.js)
 - [x] - [Dijkstra's algorithm](algorithm/dijkstra.js)
-- [ ] - Bellman–Ford algorithm
+- [x] - [Bellman–Ford algorithm](algorithm/bellman-ford.js)
 - [ ] - Prim's algorithm
 - [ ] - Fast Fourier Transform
 - [ ] - Bloom Filter

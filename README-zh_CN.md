@@ -7,7 +7,7 @@
 - [x] - [快速排序](algorithm/quick-sort.js)
 - [x] - [广度优先搜索](algorithm/breadth-first-search.js)
 - [x] - [迪杰斯特拉(Dijkstra)算法](algorithm/dijkstra.js)
-- [ ] - 贝尔曼-福特(Bellman–Ford)算法
+- [x] - [贝尔曼-福特(Bellman–Ford)算法](algorithm/bellman-ford.js)
 - [ ] - 普里姆算法
 - [ ] - 最长公共子串（动态规划）
 - [ ] - 最长公共子序列（动态规划）
