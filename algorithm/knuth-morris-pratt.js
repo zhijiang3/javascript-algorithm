@@ -9,12 +9,13 @@ function getPatternNextIndex(pattern) {
   let prevMatchIndex = -1;
 
   while (patternIndex < pattern.length) {
-    if (prevMatchIndex === -1 || pattern[patternIndex] === patternIndex[prevMatchIndex]) {
+    if (prevMatchIndex === -1 || pattern[patternIndex] === pattern[prevMatchIndex]) {
       if (pattern[++patternIndex] === pattern[++prevMatchIndex]) {
         nextIndex[patternIndex] = nextIndex[prevMatchIndex];
       } else {
         nextIndex[patternIndex] = prevMatchIndex;
       }
+      // nextIndex[++patternIndex] = ++prevMatchIndex;
     } else {
       prevMatchIndex = nextIndex[prevMatchIndex];
     }
