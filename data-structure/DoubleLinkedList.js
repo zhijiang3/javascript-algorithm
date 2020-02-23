@@ -1,49 +1,49 @@
 import { isFunc } from "shared/util";
 
-export class Node {
+/**
+ * @param {*} val
+ * @return {DoubleLinkedListNode}
+ */
+function normalizeNode(val) {
+  if (val instanceof DoubleLinkedListNode) {
+    return val;
+  }
+
+  return new DoubleLinkedListNode(val);
+}
+
+export class DoubleLinkedListNode {
   /**
    * @param {*} data
    */
   constructor(data) {
     this.data = data;
 
-    /** @var {LinkedListNode} */
+    /** @type {DoubleLinkedListNode} */
     this.prev = null;
 
-    /** @var {LinkedListNode} */
+    /** @type {DoubleLinkedListNode} */
     this.next = null;
   }
 }
 
-export default class LinkedList {
-  /**
-   * @param {*} node
-   * @return {LinkedListNode}
-   */
-  static normalizeNode(node) {
-    if (!(node instanceof Node)) {
-      return new Node(node);
-    }
-
-    return node;
-  }
-
+export default class DoubleLinkedList {
   constructor() {
-    /** @var {LinkedListNode} */
+    /** @type {DoubleLinkedListNode} */
     this.head = null;
 
-    /** @var {LinkedListNode} */
+    /** @type {DoubleLinkedListNode} */
     this.tail = null;
   }
 
   /**
-   * @param {*} node
-   * @return {LinkedList}
+   * @param {*} val
+   * @return {DoubleLinkedList}
    */
-  append(node) {
-    if (node == null) return this;
+  append(val) {
+    if (val == null) return this;
 
-    node = LinkedList.normalizeNode(node);
+    const node = normalizeNode(val);
 
     // update head pointer
     if (this.head == null) {
@@ -71,13 +71,13 @@ export default class LinkedList {
   }
 
   /**
-   * @param {*} node
-   * @return {LinkedList}
+   * @param {*} val
+   * @return {DoubleLinkedList}
    */
-  prepend(node) {
-    if (node == null) return this;
+  prepend(val) {
+    if (val == null) return this;
 
-    node = LinkedList.normalizeNode(node);
+    const node = normalizeNode(val);
 
     // update tail pointer
     if (this.tail == null) {
@@ -105,17 +105,14 @@ export default class LinkedList {
   }
 
   /**
-   * @param {LinkedListNode} prevNode
-   * @param {*} node
-   * @return {LinkedList}
+   * @param {DoubleLinkedListNode} prevNode
+   * @param {*} val
+   * @return {DoubleLinkedList}
    */
-  insertAfter(prevNode, node) {
-    node = LinkedList.normalizeNode(node);
+  insertAfter(prevNode, val) {
+    const node = normalizeNode(val);
 
-    if (prevNode == null) {
-      console.warn("LinkedList: The previous node cannot be null.");
-      return this;
-    }
+    if (prevNode == null) return this;
 
     // we find the last node for "node"
     // and update next pointer for the last node
@@ -148,8 +145,8 @@ export default class LinkedList {
   }
 
   /**
-   * @param {function} compareFunc
-   * @return {(LinkedListNode|null)}
+   * @param {(val: *) => boolean} compareFunc
+   * @return {DoubleLinkedListNode}
    */
   find(compareFunc) {
     let node = this.head;
@@ -164,7 +161,7 @@ export default class LinkedList {
   }
 
   /**
-   * @return {(LinkedListNode|null)}
+   * @return {DoubleLinkedListNode}
    */
   deleteHead() {
     if (this.head == null) return null;
@@ -177,8 +174,8 @@ export default class LinkedList {
   }
 
   /**
-   * @param {function} compareFunc
-   * @return {LinkedList}
+   * @param {(val: *) => boolean} compareFunc
+   * @return {DoubleLinkedList}
    */
   delete(compareFunc) {
     const node = this.find(compareFunc);
@@ -200,7 +197,7 @@ export default class LinkedList {
   }
 
   /**
-   * @return {LinkedListNode[]}
+   * @return {DoubleLinkedListNode[]}
    */
   toArray() {
     const result = [];

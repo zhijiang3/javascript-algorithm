@@ -1,4 +1,4 @@
-import LinkedList from "data-structure/Linked-List";
+import LinkedList from "data-structure/LinkedList";
 import { traverse } from "algorithm/linked-list";
 
 export default class Stack {

@@ -3,17 +3,17 @@ interface LinkedList {
 
   tail: LinkedListNode;
 
-  append(node: any): LinkedList;
+  append(val: any): LinkedList;
 
-  prepend(node: any): LinkedList;
-
-  insertAfter(prevNode: LinkedListNode, node: any): LinkedList;
+  prepend(val: any): LinkedList;
 
   find(compareFunc: function): LinkedListNode;
 
   deleteHead(): LinkedListNode;
 
-  delete(compareFunc: function): LinkedList;
+  deleteTail(): LinkedListNode;
+
+  delete(compareFunc: function): LinkedListNode;
 
   toArray(): LinkedListNode[];
 
@@ -22,8 +22,6 @@ interface LinkedList {
 
 interface LinkedListNode {
   data: any;
-
-  prev: LinkedListNode;
 
   next: LinkedListNode;
 }

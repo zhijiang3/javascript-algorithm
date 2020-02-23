@@ -1,8 +1,9 @@
 import { isFunc } from "shared/util";
+import LinkedList from "data-structure/LinkedList";
 
 /**
  * @param {LinkedList} linkedList
- * @param {function} callback
+ * @param {(data: *) => void} callback
  */
 export function traverse(linkedList, callback) {
   let node = linkedList.head;
@@ -15,15 +16,21 @@ export function traverse(linkedList, callback) {
 }
 
 /**
+ * @param {LinkedListNode} node
+ * @param {(data: *) => void} callback
+ */
+function reserveTraverseHelper(node, callback) {
+  if (!node) return;
+
+  reserveTraverseHelper(node.next, callback);
+
+  callback(node.data);
+}
+
+/**
  * @param {LinkedList} linkedList
- * @param {function} callback
+ * @param {(data: *) => void} callback
  */
 export function reserveTraverse(linkedList, callback) {
-  let node = linkedList.tail;
-
-  while (node != null) {
-    isFunc(callback) && callback(node.data);
-
-    node = node.prev;
-  }
+  reserveTraverseHelper(linkedList.head, callback);
 }

@@ -1,4 +1,4 @@
-import LinkedList from "data-structure/Linked-List";
+import DoubleLinkedList from "data-structure/DoubleLinkedList";
 import { hasOwn } from "shared/util";
 
 export class VertexNode {
@@ -7,7 +7,7 @@ export class VertexNode {
    */
   constructor(value) {
     this.value = value;
-    this.edges = new LinkedList();
+    this.edges = new DoubleLinkedList();
   }
 
   /**

@@ -8,7 +8,7 @@ export function hasOwn(obj, key) {
 }
 
 /**
- * @param {any} fn
+ * @param {*} fn
  * @return {boolean}
  */
 export function isFunc(fn) {
